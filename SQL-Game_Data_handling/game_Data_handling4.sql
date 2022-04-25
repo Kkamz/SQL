@@ -2,7 +2,7 @@ select * from login
 
 select * from sales
 
--- 1. ±¸¸Å È½¼ö°¡ 3È¸ ÀÌ»óÀÌ°í ·Î±×ÀÎ È½¼ö°¡ 30È¸ ÀÌ»óÀÎ À¯ÀúÀÇ ·Î±×ÀÎ È½¼ö¿Í ±¸¸Å È½¼ö¸¦ ±¸ÇÏ¼¼¿ä.
+-- 1. êµ¬ë§¤ íšŸìˆ˜ê°€ 3íšŒ ì´ìƒì´ê³  ë¡œê·¸ì¸ íšŸìˆ˜ê°€ 30íšŒ ì´ìƒì¸ ìœ ì €ì˜ ë¡œê·¸ì¸ íšŸìˆ˜ì™€ êµ¬ë§¤ íšŸìˆ˜ë¥¼ êµ¬í•˜ì„¸ìš”.
 with login_count as 
 (
 	select 
@@ -36,7 +36,7 @@ from
 where
   lc.id = sc.id 
 
--- 2. ÀÏÀÚº°·Î ±¹°¡º° DAU, PUR, ARPU, ARPPU¸¦ ±¸ÇØÁÖ¼¼¿ä.	
+-- 2. ì¼ìžë³„ë¡œ êµ­ê°€ë³„ DAU, PUR, ARPU, ARPPUë¥¼ êµ¬í•´ì£¼ì„¸ìš”.	
 with DAU as
 (
 	select count(DISTINCT ID) as AU
@@ -53,7 +53,7 @@ select
 from
 	PU, DAU, sales as s 
 	
--- 3. °¢ ±¹°¡º° ÀÏÆò±Õ ·Î±×ÀÎ È½¼ö¸¦ ±¸ÇÏ¼¼¿ä.	
+-- 3. ê° êµ­ê°€ë³„ ì¼í‰ê·  ë¡œê·¸ì¸ íšŸìˆ˜ë¥¼ êµ¬í•˜ì„¸ìš”.	
 with ID_count as
 (
 	select 
@@ -81,7 +81,7 @@ where
 group by
   country
 
--- 4. ¿ª´ë ´©Àû ±Ý¾×ÀÌ °¡Àå Å« À¯Àú¸¦ VIP¶ó°í ÇÕ½Ã´Ù. ±¹°¡º°·Î ÀÌ VIPÀÇ ÃÑ±¸¸Å¾×°ú ÃÖ°íµµ´Þ·¹º§À» Ãâ·ÂÇØÁÖ¼¼¿ä (ÃÑ ¸ÅÃâÀÌ °¡Àå ³ôÀº ±¹°¡ ¼ø¼­´ë·Î)
+-- 4. ì—­ëŒ€ ëˆ„ì  ê¸ˆì•¡ì´ ê°€ìž¥ í° ìœ ì €ë¥¼ VIPë¼ê³  í•©ì‹œë‹¤. êµ­ê°€ë³„ë¡œ ì´ VIPì˜ ì´êµ¬ë§¤ì•¡ê³¼ ìµœê³ ë„ë‹¬ë ˆë²¨ì„ ì¶œë ¥í•´ì£¼ì„¸ìš” (ì´ ë§¤ì¶œì´ ê°€ìž¥ ë†’ì€ êµ­ê°€ ìˆœì„œëŒ€ë¡œ)
 WITH Paying as
 (
 	select
@@ -110,7 +110,7 @@ group by
 order by 
   VIP_pay desc
   
--- 5. 50·¹º§ ÀÌ»óÀ» °í·¹º§ À¯Àú¶ó°í °¡Á¤ÇÒ ¶§, ºñ±¸¸Å À¯ÀúµéÀÇ °í·¹º§ ºñÁß°ú ±¸¸Å À¯ÀúµéÀÇ °í·¹º§ ºñÁßÀ» Ãâ·ÂÇØÁÖ¼¼¿ä. (ºñÁßÀÌ¶õ ¸ð¼ö Áß ÇØ´ç Á¶°ÇÃæÁ·ÀÚ ºñÀ²)
+-- 5. 50ë ˆë²¨ ì´ìƒì„ ê³ ë ˆë²¨ ìœ ì €ë¼ê³  ê°€ì •í•  ë•Œ, ë¹„êµ¬ë§¤ ìœ ì €ë“¤ì˜ ê³ ë ˆë²¨ ë¹„ì¤‘ê³¼ êµ¬ë§¤ ìœ ì €ë“¤ì˜ ê³ ë ˆë²¨ ë¹„ì¤‘ì„ ì¶œë ¥í•´ì£¼ì„¸ìš”. (ë¹„ì¤‘ì´ëž€ ëª¨ìˆ˜ ì¤‘ í•´ë‹¹ ì¡°ê±´ì¶©ì¡±ìž ë¹„ìœ¨)
 with high_LV as 
 (
 	select 
@@ -173,7 +173,7 @@ select
 from
   high_LV_no_pay, parameter_ID ,high_LV_pay
   
--- 6. ±¸¸Å À¯Àú¿Í ºñ±¸¸Å À¯ÀúµéÀÌ ¸®ÅÙ¼Ç¿¡ ¾ó¸¶³ª Â÷ÀÌ°¡ ÀÖ´ÂÁö ¾Ë°íÀÚ ÇÕ´Ï´Ù. ±¸¸Å À¯Àú¿Í ºñ±¸¸Å À¯ÀúµéÀÇ D1 ¹× D7 ÀÜÁ¸À²À» ³¯Â¥ ¼øÀ¸·Î Ãâ·ÂÇØÁÖ¼¼¿ä.
+-- 6. êµ¬ë§¤ ìœ ì €ì™€ ë¹„êµ¬ë§¤ ìœ ì €ë“¤ì´ ë¦¬í…ì…˜ì— ì–¼ë§ˆë‚˜ ì°¨ì´ê°€ ìžˆëŠ”ì§€ ì•Œê³ ìž í•©ë‹ˆë‹¤. êµ¬ë§¤ ìœ ì €ì™€ ë¹„êµ¬ë§¤ ìœ ì €ë“¤ì˜ D1 ë° D7 ìž”ì¡´ìœ¨ì„ ë‚ ì§œ ìˆœìœ¼ë¡œ ì¶œë ¥í•´ì£¼ì„¸ìš”.
 with login_info as
 (
 	select
@@ -227,7 +227,7 @@ from
   order by 1,2
 ) t
 
--- 7. ±¹°¡º°·Î °¡Àå ¸ÅÃâÀÌ ³ôÀº »óÇ° top3¸¦ ¾Ë°íÀÚ ÇÕ´Ï´Ù. ÀÌ top3 »óÇ°À» ±¸¸ÅÇÑ ¾Æ½Ã¾Æ(¹Ì±¹ Á¦¿Ü) À¯ÀúµéÀÇ ÀüÃ¼ ±â°£ ÅëÆ²¾î¼­ ARPPU¿Í ÀÏÆò±Õ Á¢¼Ó È½¼ö ±×¸®°í Æò±Õ·¹º§(ÃÖ°í µµ´Þ ·¹º§ ±âÁØ)¸¦ ±¸ÇÏ¼¼¿ä.
+-- 7. êµ­ê°€ë³„ë¡œ ê°€ìž¥ ë§¤ì¶œì´ ë†’ì€ ìƒí’ˆ top3ë¥¼ ì•Œê³ ìž í•©ë‹ˆë‹¤. ì´ top3 ìƒí’ˆì„ êµ¬ë§¤í•œ ì•„ì‹œì•„(ë¯¸êµ­ ì œì™¸) ìœ ì €ë“¤ì˜ ì „ì²´ ê¸°ê°„ í†µí‹€ì–´ì„œ ARPPUì™€ ì¼í‰ê·  ì ‘ì† íšŸìˆ˜ ê·¸ë¦¬ê³  í‰ê· ë ˆë²¨(ìµœê³  ë„ë‹¬ ë ˆë²¨ ê¸°ì¤€)ë¥¼ êµ¬í•˜ì„¸ìš”.
 with asia_top3 as
 (
 	select 
@@ -280,7 +280,7 @@ select
 from 
   login_count_maxlevel,PU, country_top3_PU as c 
 
--- 8. ¸ÅÀÏ Ã¹¹øÂ°, 7¹øÂ°, ±×¸®°í ¸¶Áö¸· ·Î±×ÀÎÇÑ À¯Àú¿¡°Ô °¢°¢ ¡°early_bird",¡°lucky_seven", ¡°finale" Ãâ¼® º¸»óÀ» ÁÖ°íÀÚ ÇÕ´Ï´Ù. °¢ ³¯Â¥º°·Î Ãâ¼® º¸»ó Å¸ÀÔ¿¡ µû¶ó ÇØ´çµÇ´Â À¯ÀúµéÀ» ºÐ·ùÇØÁÖ¼¼¿ä.
+-- 8. ë§¤ì¼ ì²«ë²ˆì§¸, 7ë²ˆì§¸, ê·¸ë¦¬ê³  ë§ˆì§€ë§‰ ë¡œê·¸ì¸í•œ ìœ ì €ì—ê²Œ ê°ê° â€œearly_bird",â€œlucky_seven", â€œfinale" ì¶œì„ ë³´ìƒì„ ì£¼ê³ ìž í•©ë‹ˆë‹¤. ê° ë‚ ì§œë³„ë¡œ ì¶œì„ ë³´ìƒ íƒ€ìž…ì— ë”°ë¼ í•´ë‹¹ë˜ëŠ” ìœ ì €ë“¤ì„ ë¶„ë¥˜í•´ì£¼ì„¸ìš”.
 with login_order as
 (
 	select
@@ -306,7 +306,7 @@ select
 group by
    lg.time
 
--- 9. ÀÏÆò±Õ ·¹º§¾÷(±â°£ ÅëÆ²¾î¼­ ·¹º§¾÷ ¼Óµµ°¡ °¡Àå ºü¸¥)ÀÌ °¡Àå ºü¸¥ À¯ÀúÀÇ ID, ±¹°¡, ÃÑ ±¸¸Å¾×, ÀÏÆò±Õ ±¸¸Å¾×, ÀÏÆò±Õ Á¢¼ÓÈ½¼ö ¸¦ ±¸ÇÏ¼¼¿ä.
+-- 9. ì¼í‰ê·  ë ˆë²¨ì—…(ê¸°ê°„ í†µí‹€ì–´ì„œ ë ˆë²¨ì—… ì†ë„ê°€ ê°€ìž¥ ë¹ ë¥¸)ì´ ê°€ìž¥ ë¹ ë¥¸ ìœ ì €ì˜ ID, êµ­ê°€, ì´ êµ¬ë§¤ì•¡, ì¼í‰ê·  êµ¬ë§¤ì•¡, ì¼í‰ê·  ì ‘ì†íšŸìˆ˜ ë¥¼ êµ¬í•˜ì„¸ìš”.
 with LV_Date_gap AS 
 (
 	SELECT
@@ -357,7 +357,7 @@ select
 from 
   login_count_rk1 as l , total_pay_rk1 as t, rank1_user as ru
 
--- 10. ·¹º§ 30 ±¸°£¿¡ µÎ¹øÂ°·Î µµ´ÞÇÑ À¯ÀúÀÇ ¾ÆÀÌµð¸¦ ±¸ÇÏ°í, ÇØ´ç À¯Àú°¡ 30 ±¸°£¿¡ ÁøÀÔÇÑ ½ÃÁ¡ ÀÌÈÄÀÇ ÃÑ ±¸¸Å¾×À» ±¸ÇÏ¼¼¿ä(ÁøÀÔ ´çÀÏ Á¦¿Ü).  
+-- 10. ë ˆë²¨ 30 êµ¬ê°„ì— ë‘ë²ˆì§¸ë¡œ ë„ë‹¬í•œ ìœ ì €ì˜ ì•„ì´ë””ë¥¼ êµ¬í•˜ê³ , í•´ë‹¹ ìœ ì €ê°€ 30 êµ¬ê°„ì— ì§„ìž…í•œ ì‹œì  ì´í›„ì˜ ì´ êµ¬ë§¤ì•¡ì„ êµ¬í•˜ì„¸ìš”(ì§„ìž… ë‹¹ì¼ ì œì™¸).  
 with lv30 AS 
 (
 	select
@@ -390,7 +390,7 @@ group by
   l.ID
   select
   
--- 11. ±¸¸Å¾×ÀÌ °¡Àå Å« À¯Àú¿Í ±¸¸Å¾×ÀÌ °¡Àå ÀûÀº À¯Àú °£ÀÇ ±â°£ ÅëÆ²¾î ÃÖ°íµµ´Þ ·¹º§ÀÇ Â÷ÀÌ¿Í ¿Ã¸° ·¹º§·®ÀÇ Â÷ÀÌ¸¦ ±¸ÇÏ¼¼¿ä.
+-- 11. êµ¬ë§¤ì•¡ì´ ê°€ìž¥ í° ìœ ì €ì™€ êµ¬ë§¤ì•¡ì´ ê°€ìž¥ ì ì€ ìœ ì € ê°„ì˜ ê¸°ê°„ í†µí‹€ì–´ ìµœê³ ë„ë‹¬ ë ˆë²¨ì˜ ì°¨ì´ì™€ ì˜¬ë¦° ë ˆë²¨ëŸ‰ì˜ ì°¨ì´ë¥¼ êµ¬í•˜ì„¸ìš”.
 with paying_user as
 (
 	select 
@@ -446,8 +446,8 @@ max_lv as
 select max(maxlv)-min(maxlv) as maxlv_gap , max(incre)-min(incre) as increlv_gap
 from max_lv,incre_lv
 
-/* 12. ¸ÅÃâ ±Ô¸ð¿¡ µû¸¥ À¯ÀúµéÀÇ ·¹º§ ºÐÆ÷¸¦ ¾Ë°íÀÚ ÇÕ´Ï´Ù. ÃÖ°íµµ´Þ ·¹º§ ±âÁØÀ¸·Î ·¹º§ ±¸°£À» 10¾¿ ³ª´³À» ¶§(~9, 10~19, 20~29, ¡¦), 
-	    ±¹°¡º°·Î À¯Àú¼ö°¡ µÎ¹øÂ°·Î ¸¹Àº ·¹º§ ±¸°£°ú ÇØ´ç ·¹º§ ±¸°£ÀÇ PUR, ARPPU µµ ÇÔ²² ±¸ÇØÁÖ¼¼¿ä.*/
+/* 12. ë§¤ì¶œ ê·œëª¨ì— ë”°ë¥¸ ìœ ì €ë“¤ì˜ ë ˆë²¨ ë¶„í¬ë¥¼ ì•Œê³ ìž í•©ë‹ˆë‹¤. ìµœê³ ë„ë‹¬ ë ˆë²¨ ê¸°ì¤€ìœ¼ë¡œ ë ˆë²¨ êµ¬ê°„ì„ 10ì”© ë‚˜ëˆ´ì„ ë•Œ(~9, 10~19, 20~29, â€¦), 
+	    êµ­ê°€ë³„ë¡œ ìœ ì €ìˆ˜ê°€ ë‘ë²ˆì§¸ë¡œ ë§Žì€ ë ˆë²¨ êµ¬ê°„ê³¼ í•´ë‹¹ ë ˆë²¨ êµ¬ê°„ì˜ PUR, ARPPU ë„ í•¨ê»˜ êµ¬í•´ì£¼ì„¸ìš”.*/
 with lv_group as
 (
 	select

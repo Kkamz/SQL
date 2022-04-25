@@ -2,7 +2,7 @@ select * from sales
 
 select * from login
 
---1. ÇÑ±¹¿¡¼­ °¡Àå ¸¹ÀÌ ÆÈ¸° »óÇ°À» ±¸ÇÏ½Ã¿À.
+--1. í•œêµ­ì—ì„œ ê°€ìž¥ ë§Žì´ íŒ”ë¦° ìƒí’ˆì„ êµ¬í•˜ì‹œì˜¤.
 select 
   item, SUM(dia_amount*buy_count) as total
 from 
@@ -14,7 +14,7 @@ group by
 order by
   total desc
   
---2. À¯Àú A¿Í BÀÇ ³¯Â¥º° ÃÖ°í ´Þ¼º ·¹º§À» ³¯Â¥ ¹× À¯Àú ¼ø¼­·Î Á¤·ÄÇÏ½Ã¿À.
+--2. ìœ ì € Aì™€ Bì˜ ë‚ ì§œë³„ ìµœê³  ë‹¬ì„± ë ˆë²¨ì„ ë‚ ì§œ ë° ìœ ì € ìˆœì„œë¡œ ì •ë ¬í•˜ì‹œì˜¤.
 select
   date, ID, max(level) as max_Lv
 FROM
@@ -26,7 +26,7 @@ group by
 order BY
   date, ID
 
---3. ±¹°¡º° ÃÑ ±¸¸Å ¼ö·®À» Ãâ·ÂÇÏ½Ã¿À.(±¸¸Å ¼ö·®ÀÌ ¸¹Àº ¼ø¼­·Î)
+--3. êµ­ê°€ë³„ ì´ êµ¬ë§¤ ìˆ˜ëŸ‰ì„ ì¶œë ¥í•˜ì‹œì˜¤.(êµ¬ë§¤ ìˆ˜ëŸ‰ì´ ë§Žì€ ìˆœì„œë¡œ)
 select
   Country, sum(dia_amount*buy_count) as total
 from
@@ -36,7 +36,7 @@ group by
 order by 
   total desc
 
---4. ³¯Â¥º°·Î ±¸¸Å À¯Àú ´ç Æò±Õ ±¸¸Å ±Ý¾×À» Ãâ·ÂÇÏ½Ã¿À. (³¯Â¥ ¼ø¼­·Î)
+--4. ë‚ ì§œë³„ë¡œ êµ¬ë§¤ ìœ ì € ë‹¹ í‰ê·  êµ¬ë§¤ ê¸ˆì•¡ì„ ì¶œë ¥í•˜ì‹œì˜¤. (ë‚ ì§œ ìˆœì„œë¡œ)
 select 
   date, ID, avg(dia_amount*buy_count) as avg
 FROM
@@ -46,7 +46,7 @@ group by
 order by
   date
   
---5. À¯Àú ´ç Æò±Õ Á¢¼Ó È½¼ö°¡ °¡Àå ¸¹Àº ³¯Â¥¸¦ Ãâ·ÂÇÏ½Ã¿À.  
+--5. ìœ ì € ë‹¹ í‰ê·  ì ‘ì† íšŸìˆ˜ê°€ ê°€ìž¥ ë§Žì€ ë‚ ì§œë¥¼ ì¶œë ¥í•˜ì‹œì˜¤.  
 select
   ID, date, max(login_count)
 FROM
@@ -59,7 +59,7 @@ FROM
 GROUP By
   ID
  
-  --6. ·¹º§ »ó½Â Æø(À¯Àú ´ç ÃÖÀú ·¹º§°ú ÃÖ°í ·¹º§ÀÇ Â÷ÀÌ)ÀÌ °¡Àå ÀÛ¾Ò´ø À¯Àú¸¦ Ãâ·ÂÇÏ½Ã¿À.
+  --6. ë ˆë²¨ ìƒìŠ¹ í­(ìœ ì € ë‹¹ ìµœì € ë ˆë²¨ê³¼ ìµœê³  ë ˆë²¨ì˜ ì°¨ì´)ì´ ê°€ìž¥ ìž‘ì•˜ë˜ ìœ ì €ë¥¼ ì¶œë ¥í•˜ì‹œì˜¤.
 select 
   ID, max(level)-min(level) as gap
 from 
@@ -70,7 +70,7 @@ order by
   gap
 limit 1
 
---7. ÀÏº°·Î ±¹°¡º° ¸ÅÃâ, PU, Æò±Õ ±¸¸Å È½¼ö¸¦ ³¯Â¥ ¹× ¸ÅÃâ ¿ª¼øÀ¸·Î Á¤·ÄÇÏ½Ã¿À.(³¯Â¥´Â ¼ø¼­´ë·Î, °¢ ³¯Â¥ ¾È¿¡¼­ ¸ÅÃâÀº Å« ¼ø¼­ºÎÅÍ)
+--7. ì¼ë³„ë¡œ êµ­ê°€ë³„ ë§¤ì¶œ, PU, í‰ê·  êµ¬ë§¤ íšŸìˆ˜ë¥¼ ë‚ ì§œ ë° ë§¤ì¶œ ì—­ìˆœìœ¼ë¡œ ì •ë ¬í•˜ì‹œì˜¤.(ë‚ ì§œëŠ” ìˆœì„œëŒ€ë¡œ, ê° ë‚ ì§œ ì•ˆì—ì„œ ë§¤ì¶œì€ í° ìˆœì„œë¶€í„°)
 select 
   date as DATE, Country ,sum(dia_amount*buy_count) as Sale, count(DISTINCT ID) as PU, avg(buy_count) as AVG
 from

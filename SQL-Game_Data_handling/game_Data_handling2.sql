@@ -1,6 +1,6 @@
 select * from practice p 
 
---1. ±¹°¡°¡ ÇÑ±¹(KR)ÀÎ À¯ÀúµéÀÌ 3/5 ÀÌÈÄ·Î ±¸¸ÅÇÑ ÃÑ »óÇ° ¼ö·®À» ±¸ÇÏ½Ã¿À
+--1. êµ­ê°€ê°€ í•œêµ­(KR)ì¸ ìœ ì €ë“¤ì´ 3/5 ì´í›„ë¡œ êµ¬ë§¤í•œ ì´ ìƒí’ˆ ìˆ˜ëŸ‰ì„ êµ¬í•˜ì‹œì˜¤
 select
   sum(amount) as total
 from
@@ -8,7 +8,7 @@ from
 where
   country = 'KR' and action_date >= '2021-03-05'
   
---2. À¯Àú B°¡ ÃÑ ±¸¸Å¾× 150 ÀÌ»óÀ» ±¸¸ÅÇß´ø ³¯Â¥¿Í °¢ ÇØ´ç ³¯Â¥¿¡ ±¸¸ÅÇÑ ÃÑ ¼ö·®À» Ãâ·ÂÇÏ½Ã¿À.
+--2. ìœ ì € Bê°€ ì´ êµ¬ë§¤ì•¡ 150 ì´ìƒì„ êµ¬ë§¤í–ˆë˜ ë‚ ì§œì™€ ê° í•´ë‹¹ ë‚ ì§œì— êµ¬ë§¤í•œ ì´ ìˆ˜ëŸ‰ì„ ì¶œë ¥í•˜ì‹œì˜¤.
 select 
   action_date, sum(amount) as total
 from
@@ -18,7 +18,7 @@ where
 group by
   action_date
   
---3. ³¯Â¥º°·Î °¢ À¯ÀúµéÀÌ product_id 1¹ø »óÇ°À» ±¸¸ÅÇÑ ÃÑ ¼ö·®À» ³¯Â¥ ¹× À¯Àú ¼øÀ¸·Î Á¤·ÄÇÏ¿© Ãâ·ÂÇÏ½Ã¿À.
+--3. ë‚ ì§œë³„ë¡œ ê° ìœ ì €ë“¤ì´ product_id 1ë²ˆ ìƒí’ˆì„ êµ¬ë§¤í•œ ì´ ìˆ˜ëŸ‰ì„ ë‚ ì§œ ë° ìœ ì € ìˆœìœ¼ë¡œ ì •ë ¬í•˜ì—¬ ì¶œë ¥í•˜ì‹œì˜¤.
 select 
   action_date, user_id, sum(amount) as total
 from
@@ -30,7 +30,7 @@ group by
 order by 
   action_date, user_id
   
---4. product_id 2¹ø »óÇ°ÀÌ ÆÈ·È´ø ³¯Â¥µéÀÇ ³¯Â¥º° ÃÑ ±¸¸Å¾×À» ±¸¸Å¾× ¿ª¼ø(³»¸²Â÷¼ø)À¸·Î Á¤·ÄÇÏ¿© Ãâ·ÂÇÏ½Ã¿À.
+--4. product_id 2ë²ˆ ìƒí’ˆì´ íŒ”ë ¸ë˜ ë‚ ì§œë“¤ì˜ ë‚ ì§œë³„ ì´ êµ¬ë§¤ì•¡ì„ êµ¬ë§¤ì•¡ ì—­ìˆœ(ë‚´ë¦¼ì°¨ìˆœ)ìœ¼ë¡œ ì •ë ¬í•˜ì—¬ ì¶œë ¥í•˜ì‹œì˜¤.
 select 
   action_date, sum(amount) as total
 from
@@ -42,7 +42,7 @@ group by
 order by 
   total desc
   
---5. ±¸¸Å¾×ÀÌ °¡Àå ¸¹Àº À¯Àú ÇÑ ¸í¸¸ Ãâ·ÂÇÏ½Ã¿À. (WHEREÀýÀ» »ç¿ëÇÏÁö ¾Ê°í)
+--5. êµ¬ë§¤ì•¡ì´ ê°€ìž¥ ë§Žì€ ìœ ì € í•œ ëª…ë§Œ ì¶œë ¥í•˜ì‹œì˜¤. (WHEREì ˆì„ ì‚¬ìš©í•˜ì§€ ì•Šê³ )
 select
   user_id
 from

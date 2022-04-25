@@ -1,5 +1,5 @@
--- (±âº»)
--- 1. À¯Àú A°¡ ±¸¸ÅÇÑ ÃÑ È½¼ö¸¦ ±¸ÇÏ½Ã¿À.
+-- (ê¸°ë³¸)
+-- 1. ìœ ì € Aê°€ êµ¬ë§¤í•œ ì´ íšŸìˆ˜ë¥¼ êµ¬í•˜ì‹œì˜¤.
 select 
   count(*) as cnt 
 from 
@@ -7,7 +7,7 @@ from
 where 
   user_id = 'A'
 
--- 2. À¯Àú A°¡ ±¸¸ÅÇÑ ³¯Â¥µé¸¸ Áßº¹ ¾øÀÌ ±¸ÇÏ½Ã¿À.
+-- 2. ìœ ì € Aê°€ êµ¬ë§¤í•œ ë‚ ì§œë“¤ë§Œ ì¤‘ë³µ ì—†ì´ êµ¬í•˜ì‹œì˜¤.
 select 
   distinct action_date as date
 from
@@ -16,7 +16,7 @@ where
    user_id = 'A'
   
   
--- 3. À¯Àú CÀÇ ÃÑ ±¸¸Å¾×À» ±¸ÇÏ½Ã¿À.
+-- 3. ìœ ì € Cì˜ ì´ êµ¬ë§¤ì•¡ì„ êµ¬í•˜ì‹œì˜¤.
 select 
   sum(revenue) as total
 from 
@@ -24,7 +24,7 @@ from
 where user_id = 'C'
    
    
--- 4. 3/3¿¡ ±¸¸Å¸¦ ÇÑ À¯ÀúµéÀ» Áßº¹ ¾øÀÌ ±¸ÇÏ½Ã¿À.
+-- 4. 3/3ì— êµ¬ë§¤ë¥¼ í•œ ìœ ì €ë“¤ì„ ì¤‘ë³µ ì—†ì´ êµ¬í•˜ì‹œì˜¤.
 select
   distinct user_id as user
 from
@@ -32,7 +32,7 @@ from
 where
   action_date = '2021-03-03'
 
--- 5. product_id 4¹ø »óÇ°ÀÌ ÆÈ¸° ÃÑ ¼ö·®°ú ±¸¸Å °Ç ¼ö¸¦ Ãâ·ÂÇÏ½Ã¿À.
+-- 5. product_id 4ë²ˆ ìƒí’ˆì´ íŒ”ë¦° ì´ ìˆ˜ëŸ‰ê³¼ êµ¬ë§¤ ê±´ ìˆ˜ë¥¼ ì¶œë ¥í•˜ì‹œì˜¤.
 select
   sum(amount) as total,count(product_id) as buy_count
 from
@@ -40,8 +40,8 @@ from
 where
   product_id = 4
 
--- (ÀÀ¿ë) Á¶°Ç¹® È°¿ëÇÏ±â
--- 3/3°ú 3/5 »çÀÌ¿¡ product_id 5¹ø »óÇ°À» ±¸¸ÅÇÑ À¯Àú(µé)À» ±¸ÇÏ½Ã¿À.
+-- (ì‘ìš©) ì¡°ê±´ë¬¸ í™œìš©í•˜ê¸°
+-- 3/3ê³¼ 3/5 ì‚¬ì´ì— product_id 5ë²ˆ ìƒí’ˆì„ êµ¬ë§¤í•œ ìœ ì €(ë“¤)ì„ êµ¬í•˜ì‹œì˜¤.
 select 
   user_id as user
 from 
@@ -49,7 +49,7 @@ from
 where
   action_date >= '2021-03-03' and action_date <= '2021-03-05' and product_id = 5
   
--- À¯Àú B°¡ product_id 2¹ø »óÇ°À» 2°³ ÀÌ»ó ±¸¸ÅÇÑ ³¯Â¥µéÀ» Áßº¹ ¾øÀÌ Ãâ·ÂÇÏ½Ã¿À.
+-- ìœ ì € Bê°€ product_id 2ë²ˆ ìƒí’ˆì„ 2ê°œ ì´ìƒ êµ¬ë§¤í•œ ë‚ ì§œë“¤ì„ ì¤‘ë³µ ì—†ì´ ì¶œë ¥í•˜ì‹œì˜¤.
 select
   action_date as date
 from 
@@ -57,7 +57,7 @@ from
 where
   user_id = 'B' and product_id ='2' and amount >=2
   
--- ÇÑ±¹(KR)¿¡¼­ product_id 2¹ø »óÇ°ÀÌ ÆÈ¸° °³¼ö¸¦ ±¸ÇÏ½Ã¿À.
+-- í•œêµ­(KR)ì—ì„œ product_id 2ë²ˆ ìƒí’ˆì´ íŒ”ë¦° ê°œìˆ˜ë¥¼ êµ¬í•˜ì‹œì˜¤.
 select
   count(*) as pd_2_cnt
 from
@@ -65,7 +65,7 @@ from
 where
   country ='KR' and product_id = 2
   
--- 3/7¿¡ À¯Àú D°¡ »óÇ°À» 4°³ ÀÌ»ó ±¸¸ÅÇÑ °Çµé¿¡ ´ëÇÏ¿© ÃÑ ±¸¸Å¾×À» ±¸ÇÏ½Ã¿À.
+-- 3/7ì— ìœ ì € Dê°€ ìƒí’ˆì„ 4ê°œ ì´ìƒ êµ¬ë§¤í•œ ê±´ë“¤ì— ëŒ€í•˜ì—¬ ì´ êµ¬ë§¤ì•¡ì„ êµ¬í•˜ì‹œì˜¤.
 select
   sum(revenue) as total_sum
 from
@@ -73,7 +73,7 @@ from
 where
   user_id = 'D' and action_date ='2021-03-07' and amount >= 4
   
--- 3/2°ú 3/5¿¡ A¿Í D°¡ ±¸¸ÅÇÑ »óÇ°µéÀ» Áßº¹ ¾øÀÌ Ãâ·ÂÇÏ½Ã¿À.
+-- 3/2ê³¼ 3/5ì— Aì™€ Dê°€ êµ¬ë§¤í•œ ìƒí’ˆë“¤ì„ ì¤‘ë³µ ì—†ì´ ì¶œë ¥í•˜ì‹œì˜¤.
 select 
   product_id
 from
